@@ -1,5 +1,6 @@
 package huncam.view.dashboard;
 
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import huncam.components.form.dashboard.Feedback_Form;
 import huncam.components.form.dashboard.Home_Form;
 import huncam.components.form.dashboard.Order_Form;
@@ -54,6 +55,7 @@ public class DashboardView extends javax.swing.JFrame {
         menu = new huncam.components.fragments.dashboard.Menu();
         header2 = new huncam.components.fragments.dashboard.Header();
         mainPanel = new javax.swing.JPanel();
+        home_Form1 = new huncam.components.form.dashboard.Home_Form();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -62,6 +64,7 @@ public class DashboardView extends javax.swing.JFrame {
 
         mainPanel.setOpaque(false);
         mainPanel.setLayout(new java.awt.BorderLayout());
+        mainPanel.add(home_Form1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
@@ -105,6 +108,8 @@ public class DashboardView extends javax.swing.JFrame {
 
     public static void main(String args[]) {
 
+        FlatMacLightLaf.setup();
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new DashboardView().setVisible(true);
@@ -114,6 +119,7 @@ public class DashboardView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private huncam.components.fragments.dashboard.Header header2;
+    private huncam.components.form.dashboard.Home_Form home_Form1;
     private javax.swing.JPanel mainPanel;
     private huncam.components.fragments.dashboard.Menu menu;
     private huncam.components.swing.PanelBorder panelBorder1;

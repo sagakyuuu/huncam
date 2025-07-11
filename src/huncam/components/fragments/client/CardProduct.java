@@ -1,34 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package huncam.components.fragments.client;
 
+import huncam.controller.AddToCartListener;
 import huncam.model.Product;
 import java.awt.Image;
 import java.util.Locale;
 import java.text.NumberFormat;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author wilia
- */
 public class CardProduct extends javax.swing.JPanel {
 
-    /**
-     * Creates new form CardProduct
-     */
     private Product product;
-
-    public CardProduct() {
-        initComponents();
-    }
+    private AddToCartListener listener;
 
     public CardProduct(Product product) {
         initComponents(); // Method ini dibuat otomatis oleh NetBeans
         this.product = product;
         populateCard(); // Panggil method untuk mengisi data
+
+        btnAddToCart.addActionListener(e -> {
+            if (listener != null) {
+                listener.onAddToCart(this.product);
+            }
+        });
+    }
+
+    public void setAddToCartListener(AddToCartListener listener) {
+        this.listener = listener;
     }
 
     private void populateCard() {
@@ -38,9 +35,9 @@ public class CardProduct extends javax.swing.JPanel {
         lbPriceCard.setText(rupiah.format(product.getPrice()));
 
         try {
-            ImageIcon originalIcon = new ImageIcon(product.getImagePath());
+            ImageIcon originalIcon = new ImageIcon(getClass().getResource("/huncam/assets/product/" + product.getImagePath()));
             Image originalImage = originalIcon.getImage();
-            Image scaledImage = originalImage.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+            Image scaledImage = originalImage.getScaledInstance(306, 200, Image.SCALE_SMOOTH);
             ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
             lbImageCard.setIcon(scaledIcon);
@@ -84,6 +81,11 @@ public class CardProduct extends javax.swing.JPanel {
         btnAddToCart.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAddToCart.setForeground(new java.awt.Color(255, 255, 255));
         btnAddToCart.setText("Add To Cart");
+        btnAddToCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddToCartActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -124,6 +126,10 @@ public class CardProduct extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
+
+    }//GEN-LAST:event_btnAddToCartActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
